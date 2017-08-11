@@ -37,4 +37,4 @@ obj-y	+=  keypad/
 obj-y	+=  sound/
 obj-y	+=  accdet/
 obj-y	+=  partition/
-
+obj-y 	+=  multibridge/sn65dsi8x/
