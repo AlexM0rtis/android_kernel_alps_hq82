@@ -875,14 +875,7 @@ static int tpd_power_on(struct i2c_client *client)
 	GTP_GPIO_OUTPUT(GTP_RST_PORT, 0);
 	msleep(10);
 	/* power on, need confirm with SA */
-#ifdef TPD_POWER_SOURCE_CUSTOM
-	hwPowerOn(TPD_POWER_SOURCE_CUSTOM, VOL_2800, "TP");
-#else
-	hwPowerOn(MT65XX_POWER_LDO_VGP2, VOL_2800, "TP");
-#endif
-#ifdef TPD_POWER_SOURCE_1800
-	hwPowerOn(TPD_POWER_SOURCE_1800, VOL_1800, "TP");
-#endif
+hwPowerOn(TPD_POWER_SOURCE_CUSTOM, VOL_2800, "TP");
 
 	gtp_reset_guitar(client, 20);
 	GTP_ERROR("GTP_INT_PORT:0x%x, GTP_RST_PORT:0x%x", GTP_INT_PORT, GTP_RST_PORT);
