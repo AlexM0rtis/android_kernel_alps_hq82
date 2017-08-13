@@ -802,7 +802,6 @@ static CHARGER_TYPE hw_get_charger_type(void)
 	 /********* Finally setting *******************************/
 	 hw_bc11_done();
 
-#endif
 	 return charger_type;
 }
 
@@ -833,7 +832,7 @@ static kal_uint32 charging_get_charger_type(void *data)
 #endif
 	charging_type_det_done = KAL_FALSE;	
 
-	charger_type = hw_get_charger_type();
+//	charger_type = hw_get_charger_type();
 
     #ifdef MTK_AC_CHARGER_DEBOUNCE
     if(NONSTANDARD_CHARGER == charger_type)
@@ -842,7 +841,7 @@ static kal_uint32 charging_get_charger_type(void *data)
     }
     #endif
 
-    *(CHARGER_TYPE*)(data) = charger_type;
+//    *(CHARGER_TYPE*)(data) = charger_type;
     charging_type_det_done = KAL_TRUE;
 #endif
     return status;

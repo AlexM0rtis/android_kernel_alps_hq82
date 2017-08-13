@@ -875,7 +875,7 @@ static int tpd_power_on(struct i2c_client *client)
 	GTP_GPIO_OUTPUT(GTP_RST_PORT, 0);
 	msleep(10);
 	/* power on, need confirm with SA */
-hwPowerOn(TPD_POWER_SOURCE_CUSTOM, VOL_2800, "TP");
+	hwPowerOn(TPD_POWER_SOURCE_CUSTOM, VOL_2800, "TP");
 
 	gtp_reset_guitar(client, 20);
 	GTP_ERROR("GTP_INT_PORT:0x%x, GTP_RST_PORT:0x%x", GTP_INT_PORT, GTP_RST_PORT);
@@ -1396,8 +1396,7 @@ static int touch_event_handler(void *unused)
 				input_y = coor_data[3] | coor_data[4] << 8;
 				input_w = coor_data[5] | coor_data[6] << 8;
 
-				input_x = TPD_WARP_X(abs_x_max, input_x);
-				input_y = TPD_WARP_Y(abs_y_max, input_y);
+				GTP_SWAP(input_x, input_y);
 
 #if GTP_CHANGE_X2Y
 				temp = input_x;
@@ -1405,7 +1404,8 @@ static int touch_event_handler(void *unused)
 				input_y = temp;
 #endif
 
-				tpd_down(input_x, input_y, input_w, id);
+				input_x = GTP_MAX_HEIGHT - input_x;
+				tpd_down(input_y, input_x, input_w, id);
 			}
 		} else if (pre_touch) {
 			GTP_DEBUG("Touch Release!");

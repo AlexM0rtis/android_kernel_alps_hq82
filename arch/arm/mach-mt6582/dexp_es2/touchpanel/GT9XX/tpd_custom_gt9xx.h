@@ -128,13 +128,13 @@ extern int i2c_write_bytes(struct i2c_client *client, u16 addr, u8 *txbuf, int l
 extern int i2c_read_bytes(struct i2c_client *client, u16 addr, u8 *rxbuf, int len);
 
 //***************************PART1:ON/OFF define*******************************
-#define GTP_CUSTOM_CFG        0
-#define GTP_DRIVER_SEND_CFG   1       // driver send config to TP in intilization (for no config built in TP flash)
+#define GTP_CUSTOM_CFG        1
+#define GTP_DRIVER_SEND_CFG   0       // driver send config to TP in intilization (for no config built in TP flash)
 #define GTP_HAVE_TOUCH_KEY    0
 #define GTP_POWER_CTRL_SLEEP  0       // turn off/on power on suspend/resume
 #define GTP_AUTO_UPDATE       0       // updated by .bin file
 #define GTP_DEF_FW_UPDATE     1       //  default firmware array update, function only when GTP_AUTO_UDPATE enabled
-#define GTP_CHANGE_X2Y        0
+#define GTP_CHANGE_X2Y        1
 #define GTP_ESD_PROTECT       0 
 #define GTP_CREATE_WR_NODE    1              
 #define GTP_SLIDE_WAKEUP      0      
@@ -279,12 +279,12 @@ extern int i2c_read_bytes(struct i2c_client *client, u16 addr, u8 *rxbuf, int le
 
 // STEP_3(optional):Custom set some config by themself,if need.
 #if GTP_CUSTOM_CFG
-  #define GTP_MAX_HEIGHT   800          
-  #define GTP_MAX_WIDTH    480
+  #define GTP_MAX_HEIGHT   1024          
+  #define GTP_MAX_WIDTH    600
   #define GTP_INT_TRIGGER  0    //0:Rising 1:Falling
 #else
-  #define GTP_MAX_HEIGHT   4096
-  #define GTP_MAX_WIDTH    4096
+  #define GTP_MAX_HEIGHT   1024
+  #define GTP_MAX_WIDTH    600
   #define GTP_INT_TRIGGER  1
 #endif
 #define GTP_MAX_TOUCH      5
